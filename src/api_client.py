@@ -19,8 +19,8 @@ class NominatimClient:
         if not data:
             return None
         return {
-            "latitude": float(data["lat"]),
-            "longitude": float(data["lon"])
+            "latitude": float(data[0]["lat"]),
+            "longitude": float(data[0]["lon"]),
         }
 
 
@@ -35,22 +35,22 @@ class OpenSkyClient:
         response = requests.get(OpenSkyClient.BASE_URL, timeout=30)
         response.raise_for_status()
         data = response.json()
-        return data.get("states", )
+        return data.get("states", [])
 
     @staticmethod
     def parse_state_vector(state: List[Any]) -> Dict[str, Any]:
         """Преобразует state vector (массив) в словарь."""
         return {
-            "icao24": state,
-            "callsign": state,
-        "origin_country": state,
-        "longitude": state,
-        "latitude": state,
-        "baro_altitude": state,
-        "on_ground": state,
-        "velocity": state,
-        "true_track": state,
-        "vertical_rate": state,
-        "geo_altitude": state,
-        "squawk": state
+            "icao24": state[0],
+            "callsign": state[1],
+            "origin_country": state[2],
+            "longitude": state[5],
+            "latitude": state[6],
+            "baro_altitude": state[7],
+            "on_ground": state[8],
+            "velocity": state[9],
+            "true_track": state[10],
+            "vertical_rate": state[11],
+            "geo_altitude": state[13],
+            "squawk": state[14],
         }
