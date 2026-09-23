@@ -1,10 +1,13 @@
 import os
-import pytest
+
 import psycopg2
-from src.db_manager import DBManager
+import pytest
 from dotenv import load_dotenv
 
+from src.db_manager import DBManager
+
 load_dotenv()
+
 
 @pytest.fixture(scope="function")
 def db_manager():

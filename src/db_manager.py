@@ -1,8 +1,9 @@
 import os
-from typing import List, Dict, Any, Optional
+from typing import Any, Dict, List, Optional
+
 import psycopg2
-from psycopg2.extras import execute_values
 from dotenv import load_dotenv
+from psycopg2.extras import execute_values
 
 load_dotenv()
 
